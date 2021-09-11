@@ -23,6 +23,7 @@ class UserController extends Controller
     /**
      * @param IUserFind $userFind
      * @param IUserUpdateService $userUpdateService
+     * @param IUserActive $userActive
      */
     public function __construct(IUserFind $userFind, IUserUpdateService $userUpdateService, IUserActive $userActive)
     {
@@ -39,6 +40,20 @@ class UserController extends Controller
     {
         try {
             return response()->json($this->userFind->allUserPaginate());
+        }catch (Exception $ex){
+            return response()->json([$ex], 500);
+        }
+    }
+
+
+    /**
+     * @param int $user_id
+     * @return JsonResponse
+     */
+    public function show (int $user_id): JsonResponse
+    {
+        try {
+            return response()->json($this->userFind->findWithAll($user_id));
         }catch (Exception $ex){
             return response()->json([$ex], 500);
         }

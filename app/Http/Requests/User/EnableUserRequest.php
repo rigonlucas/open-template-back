@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use App\Rules\IsAuthUser;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EnableUserRequest extends FormRequest
@@ -24,7 +25,7 @@ class EnableUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|integer|exists:users,id'
+            'id' => ['required', 'integer', 'exists:users,id', new IsAuthUser()]
         ];
     }
 }

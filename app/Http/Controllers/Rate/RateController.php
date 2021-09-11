@@ -9,9 +9,7 @@ use App\Http\Interfaces\Rate\IRateCheck;
 use App\Http\Interfaces\Rate\IRateStore;
 use App\Http\Requests\Rate\RateStoreRequest;
 use Exception;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +28,7 @@ class RateController extends Controller
      * @param RateStoreRequest $request
      * @return JsonResponse
      */
-    public function store (RateStoreRequest $request)
+    public function store (RateStoreRequest $request): JsonResponse
     {
         $fields = $request->validated();
         Arr::set($fields, 'user_id', Auth::id());

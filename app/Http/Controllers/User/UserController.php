@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Exceptions\User\UserNotFoundException;
+use App\Helpers\ResponseDataBuilder;
 use App\Http\Controllers\Controller;
+use App\Http\Interfaces\User\IUserActive;
 use App\Http\Interfaces\User\IUserFind;
 use App\Http\Interfaces\User\IUserUpdateService;
 use App\Http\Requests\User\DisableUserRequest;
@@ -16,15 +18,17 @@ class UserController extends Controller
 {
     private IUserFind $userFind;
     private IUserUpdateService $userUpdateService;
+    private IUserActive $userActive;
 
     /**
      * @param IUserFind $userFind
      * @param IUserUpdateService $userUpdateService
      */
-    public function __construct(IUserFind $userFind, IUserUpdateService $userUpdateService)
+    public function __construct(IUserFind $userFind, IUserUpdateService $userUpdateService, IUserActive $userActive)
     {
         $this->userFind = $userFind;
         $this->userUpdateService = $userUpdateService;
+        $this->userActive = $userActive;
     }
 
 
@@ -62,7 +66,8 @@ class UserController extends Controller
     public function disable (DisableUserRequest $request): JsonResponse
     {
         try {
-            return response()->json($request->validated());
+            $this->userActive->disable($request->validated());
+            return response()->json(ResponseDataBuilder::buildWithoutData("Usuário inativo"));
         }catch (Exception $ex){
             return response()->json([$ex], 500);
         }
@@ -75,7 +80,8 @@ class UserController extends Controller
     public function enable (EnableUserRequest $request): JsonResponse
     {
         try {
-            return response()->json($request->validated());
+            $this->userActive->enable($request->validated());
+            return response()->json(ResponseDataBuilder::buildWithoutData("Usuário ativo"));
         }catch (Exception $ex){
             return response()->json([$ex], 500);
         }

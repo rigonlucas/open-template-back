@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Http\Interfaces\Rate\IRateCheck;
 use App\Http\Interfaces\Rate\IRateFind;
 use App\Http\Interfaces\Rate\IRateStore;
+use App\Http\Interfaces\User\IUserActive;
+use App\Http\Interfaces\User\IUserDelete;
 use App\Http\Interfaces\User\IUserFind;
 use App\Http\Interfaces\User\IUserLogin;
 use App\Http\Interfaces\User\IUserLogout;
@@ -15,11 +17,14 @@ use App\Http\Interfaces\User\IUserUpdateService;
 use App\Http\Interfaces\UserPermission\IUserPermissionStore;
 use App\Repositories\Rate\RateFind;
 use App\Repositories\Rate\RateStore;
+use App\Repositories\User\UserActive;
+use App\Repositories\User\UserDelete;
 use App\Repositories\User\UserFind;
 use App\Repositories\User\UserStore;
 use App\Repositories\User\UserUpdate;
 use App\Repositories\UserPermission\UserPermissionStore;
 use App\Services\Rate\RateService;
+use App\Services\User\UserActiveService;
 use App\Services\User\UserLoginService;
 use App\Services\User\UserLogoutService;
 use App\Services\User\UserRegisterService;
@@ -61,6 +66,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IUserLogout::class, UserLogoutService::class);
         $this->app->bind(IUserUpdate::class, UserUpdate::class);
         $this->app->bind(IUserUpdateService::class, UserUpdateService::class);
+        $this->app->bind(IUserActive::class, UserActiveService::class);
+        $this->app->bind(IUserDelete::class, UserDelete::class);
     }
 
     private function setRate(){

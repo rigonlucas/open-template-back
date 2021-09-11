@@ -25,4 +25,8 @@ class UserFind implements IUserFind
         return User::latest()->with(['permissions'])->paginate(20);
     }
 
+    function find(int $id): ?User
+    {
+        return User::find($id);
+    }
 }

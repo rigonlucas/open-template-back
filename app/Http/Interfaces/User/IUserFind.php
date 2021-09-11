@@ -13,4 +13,5 @@ interface IUserFind
 
     function allUserPaginate (): LengthAwarePaginator;
 
+    function find(int $id) : ?User;
 }

@@ -26,8 +26,9 @@ Route::prefix('admin')->group(function (){
     });
 });
 
-Route::prefix('superAdmin')->group(function (){
+Route::prefix('superadmin')->group(function (){
     Route::group(['middleware' => ['auth:sanctum', 'super.admin']], function () {
-        Route::get('users/lista', [UserController::Class, 'index'])->name('superadmin.users.list');
+        Route::get('user/lista', [UserController::Class, 'index'])->name('superadmin.user.list');
+        Route::put('user/update', [UserController::Class, 'update'])->name('superadmin.user.update');
     });
 });

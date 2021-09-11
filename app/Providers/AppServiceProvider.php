@@ -10,16 +10,20 @@ use App\Http\Interfaces\User\IUserLogin;
 use App\Http\Interfaces\User\IUserLogout;
 use App\Http\Interfaces\User\IUserRegister;
 use App\Http\Interfaces\User\IUserStore;
+use App\Http\Interfaces\User\IUserUpdate;
 use App\Http\Interfaces\UserPermission\IUserPermissionStore;
 use App\Repositories\Rate\RateFind;
 use App\Repositories\Rate\RateStore;
 use App\Repositories\User\UserFind;
 use App\Repositories\User\UserStore;
+use App\Repositories\User\UserUpdate;
 use App\Repositories\UserPermission\UserPermissionStore;
 use App\Services\Rate\RateService;
+use App\Services\User\IUserUpdateService;
 use App\Services\User\UserLoginService;
 use App\Services\User\UserLogoutService;
 use App\Services\User\UserRegisterService;
+use App\Services\User\UserUpdateService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -55,6 +59,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IUserLogin::class, UserLoginService::class);
         $this->app->bind(IUserFind::class, UserFind::class);
         $this->app->bind(IUserLogout::class, UserLogoutService::class);
+        $this->app->bind(IUserUpdate::class, UserUpdate::class);
+        $this->app->bind(IUserUpdateService::class, UserUpdateService::class);
     }
 
     private function setRate(){

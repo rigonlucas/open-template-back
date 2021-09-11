@@ -67,6 +67,6 @@ class User extends Authenticatable
     }
 
     public function permissions() : HasMany {
-        return $this->hasMany(UserPermission::class);
+        return $this->hasMany(UserPermission::class)->withCasts(['guard' => 'json']);
     }
 }

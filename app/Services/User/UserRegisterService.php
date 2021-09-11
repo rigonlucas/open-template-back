@@ -22,7 +22,10 @@ class UserRegisterService implements IUserRegister
     {
         $user = $this->userStore->store($fields);
         $token = $user->createToken(env('APP_KEY'))->plainTextToken;
-        $this->userPermissionStore->store(['user_id' => $user->id, 'permission' => 'simple']);
+//        $this->userPermissionStore->store([
+//                'user_id' => $user->id,
+//                'permission' => 'only_auth',
+//                'guard' => '[{"read": "true"}, {"store": "true"}, {"update": "true"}, {"delete": "true"}]']);
         return [
                 'user' => User::with('permissions')->find($user->id),
                 'token' => $token,

@@ -19,6 +19,9 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware( 'auth:sanctum');
 
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+});
 
 Route::prefix('admin')->group(function (){
     Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
@@ -30,5 +33,7 @@ Route::prefix('superadmin')->group(function (){
     Route::group(['middleware' => ['auth:sanctum', 'super.admin']], function () {
         Route::get('user/lista', [UserController::Class, 'index'])->name('superadmin.user.list');
         Route::put('user/update', [UserController::Class, 'update'])->name('superadmin.user.update');
+        Route::put('user/disable', [UserController::Class, 'disable'])->name('superadmin.user.disable');
+        Route::put('user/enable', [UserController::Class, 'enable'])->name('superadmin.user.enable');
     });
 });

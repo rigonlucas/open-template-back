@@ -5,10 +5,15 @@ namespace App\Http\Controllers\User;
 use App\Exceptions\User\UserNotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\User\IUserFind;
+use App\Http\Requests\User\DisableUserRequest;
+use App\Http\Requests\User\EnableUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Services\User\IUserUpdateService;
 use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
@@ -48,6 +53,32 @@ class UserController extends Controller
             return response()->json([$this->userUpdateService->update($request->validated())]);
         }catch (UserNotFoundException){
             return response()->json([null],204);
+        }catch (Exception $ex){
+            return response()->json([$ex], 500);
+        }
+    }
+
+    /**
+     * @param DisableUserRequest $request
+     * @return JsonResponse
+     */
+    public function disable (DisableUserRequest $request): JsonResponse
+    {
+        try {
+            return response()->json($request->validated());
+        }catch (Exception $ex){
+            return response()->json([$ex], 500);
+        }
+    }
+
+    /**
+     * @param EnableUserRequest $request
+     * @return JsonResponse
+     */
+    public function enable (EnableUserRequest $request): JsonResponse
+    {
+        try {
+            return response()->json($request->validated());
         }catch (Exception $ex){
             return response()->json([$ex], 500);
         }

@@ -19,7 +19,6 @@ class UserLoginService implements IUserLogin
 
     function login(array $fields): array
     {
-        //$user = $this->userFind->findLogin($fields['email']);
         $user = $this->userFind->findLogin($fields['email']);
 
         if(!$user || !Hash::check($fields['password'], $user->password)){

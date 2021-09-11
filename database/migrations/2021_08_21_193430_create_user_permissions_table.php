@@ -17,7 +17,8 @@ class CreateUserPermissionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('permission', 200);
-            $table->timestamps();
+            $table->json('guard')->nullable();
+            $table->timestampsTz();
 
             $table->foreign('user_id')->references('id')->on('users');
         });

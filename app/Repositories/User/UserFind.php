@@ -11,7 +11,7 @@ class UserFind implements IUserFind
 
     function findLogin(string $email): ?User
     {
-        return User::where('email', $email)->with('permissions')->first();
+        return User::where('email', $email)->with(['permissions'])->first();
     }
 
     function findUsersDoesHaveProcessoUserId(int $processo_id): LengthAwarePaginator

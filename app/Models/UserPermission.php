@@ -21,6 +21,11 @@ class UserPermission extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'permission'
+        'permission',
+        'guard',
+    ];
+
+    protected $casts =[
+      'guard' => 'json'
     ];
 }

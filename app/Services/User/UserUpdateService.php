@@ -5,6 +5,7 @@ namespace App\Services\User;
 use App\Exceptions\User\UserNotFoundException;
 use App\Http\Interfaces\User\IUserFind;
 use App\Http\Interfaces\User\IUserUpdate;
+use App\Http\Interfaces\User\IUserUpdateService;
 use Illuminate\Support\Arr;
 
 class UserUpdateService implements IUserUpdateService

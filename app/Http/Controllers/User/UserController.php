@@ -5,15 +5,12 @@ namespace App\Http\Controllers\User;
 use App\Exceptions\User\UserNotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\User\IUserFind;
+use App\Http\Interfaces\User\IUserUpdateService;
 use App\Http\Requests\User\DisableUserRequest;
 use App\Http\Requests\User\EnableUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
-use App\Services\User\IUserUpdateService;
 use Exception;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 
 class UserController extends Controller
 {

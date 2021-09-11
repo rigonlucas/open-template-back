@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\User;
+namespace App\Http\Interfaces\User;
 
 interface IUserUpdateService
 {

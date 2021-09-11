@@ -18,11 +18,11 @@ class UserRegisterService implements IUserRegister
         $this->userPermissionStore = $userPermissionStore;
     }
 
-    function registerStudent(array $fields): array
+    function register(array $fields): array
     {
         $user = $this->userStore->store($fields);
         $token = $user->createToken(env('APP_KEY'))->plainTextToken;
-        $this->userPermissionStore->store(['user_id' => $user->id, 'permission' => 'redacao']);
+        $this->userPermissionStore->store(['user_id' => $user->id, 'permission' => 'simple']);
         return [
                 'user' => User::with('permissions')->find($user->id),
                 'token' => $token,

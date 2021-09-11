@@ -45,7 +45,7 @@ class AuthController extends Controller
         try {
             $fields = $request->validated();
             Arr::set($fields, 'password', bcrypt($fields['password']));
-            return response(ResponseDataBuilder::buildWithData("Login realizado pelo registro", $this->userRegister->registerStudent($fields)), 200);
+            return response(ResponseDataBuilder::buildWithData("Login realizado pelo registro", $this->userRegister->register($fields)), 200);
         }catch (Exception $ex){
             return response($ex, 500);
         }

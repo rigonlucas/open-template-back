@@ -6,5 +6,5 @@ use App\Models\User;
 
 interface IUserRegister
 {
-    function registerStudent(Array $fields): array;
+    function register(Array $fields): array;
 }

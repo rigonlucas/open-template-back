@@ -59,17 +59,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function redacaoOpen() : hasOne {
-        return $this->hasOne(Redacao::class)->where('finished_at', null);
-    }
-
-    public function redacao() : hasOne {
-        return $this->hasOne(Redacao::class);
-    }
-
-    public function redacoes() : HasMany {
-        return $this->hasMany(Redacao::class);
-    }
 
     public function rates() : HasMany {
         return $this->hasMany(Rate::class);
@@ -77,9 +66,5 @@ class User extends Authenticatable
 
     public function permissions() : HasMany {
         return $this->hasMany(UserPermission::class);
-    }
-
-    public function processoUser() {
-        return $this->hasMany(ProcessoUser::class);
     }
 }

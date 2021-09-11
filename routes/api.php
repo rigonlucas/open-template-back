@@ -1,11 +1,6 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Processo\ProcessoController;
-use App\Http\Controllers\Processo\ProcessoUserController;
-use App\Http\Controllers\Rate\RateController;
-use App\Http\Controllers\Redacao\RedacaoController;
-use App\Http\Controllers\Redacao\RedacaoTemaController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 

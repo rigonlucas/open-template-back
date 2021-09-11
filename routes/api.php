@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\User\PermissionsController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,10 +32,18 @@ Route::prefix('admin')->group(function (){
 
 Route::prefix('superadmin')->group(function (){
     Route::group(['middleware' => ['auth:sanctum', 'super.admin']], function () {
+        /**
+         * USER MANAGER
+         */
         Route::get('user/list', [UserController::Class, 'index'])->name('superadmin.user.list');
         Route::get('user/show/{id}', [UserController::Class, 'show'])->name('superadmin.user.show.id');
         Route::put('user/update', [UserController::Class, 'update'])->name('superadmin.user.update');
         Route::put('user/disable', [UserController::Class, 'disable'])->name('superadmin.user.disable');
         Route::put('user/enable', [UserController::Class, 'enable'])->name('superadmin.user.enable');
+
+        /**
+         * USER PERMISSIONS MANAGER
+         */
+        Route::post('permissions/store', [PermissionsController::class, 'store'])->name('superadmin.permission.store');
     });
 });

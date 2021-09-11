@@ -14,6 +14,7 @@ use App\Http\Interfaces\User\IUserRegister;
 use App\Http\Interfaces\User\IUserStore;
 use App\Http\Interfaces\User\IUserUpdate;
 use App\Http\Interfaces\User\IUserUpdateService;
+use App\Http\Interfaces\UserPermission\IUserPermissionService;
 use App\Http\Interfaces\UserPermission\IUserPermissionStore;
 use App\Repositories\Rate\RateFindRepo;
 use App\Repositories\Rate\RateStoreRepo;
@@ -28,6 +29,7 @@ use App\Services\User\UserLoginService;
 use App\Services\User\UserLogoutService;
 use App\Services\User\UserRegisterService;
 use App\Services\User\UserUpdateService;
+use App\Services\UserPermission\UserPermissionService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -56,6 +58,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function setUserPermission() {
         $this->app->bind(IUserPermissionStore::class, UserPermissionStoreRepo::class);
+        $this->app->bind(IUserPermissionService::class, UserPermissionService::class);
     }
     private function setUser(){
         $this->app->bind(IUserStore::class, UserStoreRepo::class);

@@ -5,7 +5,7 @@ namespace App\Repositories\Rate;
 use App\Http\Interfaces\Rate\IRateStore;
 use App\Models\Rate;
 
-class RateStore implements IRateStore
+class RateStoreRepo implements IRateStore
 {
 
     function store(array $fields): Rate

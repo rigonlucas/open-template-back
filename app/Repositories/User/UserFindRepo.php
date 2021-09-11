@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class UserFind implements IUserFind
+class UserFindRepo implements IUserFind
 {
 
     function findLogin(string $email): ? User

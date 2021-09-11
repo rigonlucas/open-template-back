@@ -5,7 +5,7 @@ namespace App\Repositories\User;
 use App\Http\Interfaces\User\IUserUpdate;
 use App\Models\User;
 
-class UserUpdate implements IUserUpdate
+class UserUpdateRepo implements IUserUpdate
 {
 
     public function update(array $fields): int

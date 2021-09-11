@@ -5,7 +5,7 @@ namespace App\Repositories\User;
 use App\Http\Interfaces\User\IUserDelete;
 use App\Models\User;
 
-class UserDelete implements IUserDelete
+class UserDeleteRepo implements IUserDelete
 {
 
     function enable(int $user_id): bool

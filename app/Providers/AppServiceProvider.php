@@ -15,14 +15,13 @@ use App\Http\Interfaces\User\IUserStore;
 use App\Http\Interfaces\User\IUserUpdate;
 use App\Http\Interfaces\User\IUserUpdateService;
 use App\Http\Interfaces\UserPermission\IUserPermissionStore;
-use App\Repositories\Rate\RateFind;
-use App\Repositories\Rate\RateStore;
-use App\Repositories\User\UserActive;
-use App\Repositories\User\UserDelete;
-use App\Repositories\User\UserFind;
-use App\Repositories\User\UserStore;
-use App\Repositories\User\UserUpdate;
-use App\Repositories\UserPermission\UserPermissionStore;
+use App\Repositories\Rate\RateFindRepo;
+use App\Repositories\Rate\RateStoreRepo;
+use App\Repositories\User\UserDeleteRepo;
+use App\Repositories\User\UserFindRepo;
+use App\Repositories\User\UserStoreRepo;
+use App\Repositories\User\UserUpdateRepo;
+use App\Repositories\UserPermission\UserPermissionStoreRepo;
 use App\Services\Rate\RateService;
 use App\Services\User\UserActiveService;
 use App\Services\User\UserLoginService;
@@ -56,23 +55,23 @@ class AppServiceProvider extends ServiceProvider
     }
 
     private function setUserPermission() {
-        $this->app->bind(IUserPermissionStore::class, UserPermissionStore::class);
+        $this->app->bind(IUserPermissionStore::class, UserPermissionStoreRepo::class);
     }
     private function setUser(){
-        $this->app->bind(IUserStore::class, UserStore::class);
+        $this->app->bind(IUserStore::class, UserStoreRepo::class);
         $this->app->bind(IUserRegister::class, UserRegisterService::class);
         $this->app->bind(IUserLogin::class, UserLoginService::class);
-        $this->app->bind(IUserFind::class, UserFind::class);
+        $this->app->bind(IUserFind::class, UserFindRepo::class);
         $this->app->bind(IUserLogout::class, UserLogoutService::class);
-        $this->app->bind(IUserUpdate::class, UserUpdate::class);
+        $this->app->bind(IUserUpdate::class, UserUpdateRepo::class);
         $this->app->bind(IUserUpdateService::class, UserUpdateService::class);
         $this->app->bind(IUserActive::class, UserActiveService::class);
-        $this->app->bind(IUserDelete::class, UserDelete::class);
+        $this->app->bind(IUserDelete::class, UserDeleteRepo::class);
     }
 
     private function setRate(){
-        $this->app->bind(IRateStore::class, RateStore::class);
-        $this->app->bind(IRateFind::class, RateFind::class);
+        $this->app->bind(IRateStore::class, RateStoreRepo::class);
+        $this->app->bind(IRateFind::class, RateFindRepo::class);
         $this->app->bind(IRateCheck::class, RateService::class);
     }
 }

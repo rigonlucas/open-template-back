@@ -5,7 +5,7 @@ namespace App\Repositories\UserPermission;
 use App\Http\Interfaces\UserPermission\IUserPermissionStore;
 use App\Models\UserPermission;
 
-class UserPermissionStore implements IUserPermissionStore
+class UserPermissionStoreRepo implements IUserPermissionStore
 {
 
     function store(array $fields): UserPermission

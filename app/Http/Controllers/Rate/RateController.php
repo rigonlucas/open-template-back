@@ -10,6 +10,7 @@ use App\Http\Interfaces\Rate\IRateStore;
 use App\Http\Requests\Rate\RateStoreRequest;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -27,9 +28,9 @@ class RateController extends Controller
 
     /**
      * @param RateStoreRequest $request
-     * @return Response|Application
+     * @return JsonResponse
      */
-    public function store (RateStoreRequest $request): Response|Application
+    public function store (RateStoreRequest $request)
     {
         $fields = $request->validated();
         Arr::set($fields, 'user_id', Auth::id());
@@ -37,19 +38,23 @@ class RateController extends Controller
         try {
             $this->rateCheck->checkUserRate($fields['user_id']);
             $rate = $this->rateStore->store($fields);
-            return response(ResponseDataBuilder::buildWithData("Avaliação realizada", $rate), 201);
+            return response()->json(ResponseDataBuilder::buildWithData("Avaliação realizada", $rate), 201);
         } catch (RateFoundException){
-            return response(null,302);
+            return response()->json(null,302);
         } catch (Exception $ex){
-            return response($ex, 500);
+            return response()->json([$ex], 500);
         }
     }
 
     /**
-     * @return Response|Application
+     * @return JsonResponse
      */
-    public function checkRateUser(): Response|Application
+    public function checkRateUser(): JsonResponse
     {
-        return response(null, $this->rateCheck->checkUserRateResponse(Auth::id()));
+        try {
+            return response()->json(null, $this->rateCheck->checkUserRateResponse(Auth::id()));
+        }catch (Exception $ex){
+            return response()->json([$ex], 500);
+        }
     }
 }

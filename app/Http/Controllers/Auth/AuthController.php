@@ -74,7 +74,7 @@ class AuthController extends Controller
             $this->userLogout->singleLogout();
             return response()->json(ResponseDataBuilder::buildWithoutData("Logout ok"), 200);
         }catch (Exception $ex){
-            return response()->json([$ex, 500]);
+            return response()->json($ex, 500);
         }
     }
 }

@@ -41,7 +41,7 @@ class UserController extends Controller
         try {
             return response()->json($this->userFind->allUserPaginate());
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 
@@ -55,7 +55,7 @@ class UserController extends Controller
         try {
             return response()->json($this->userFind->findWithAll($user_id));
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 
@@ -71,7 +71,7 @@ class UserController extends Controller
         }catch (UserNotFoundException){
             return response()->json([null],204);
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 
@@ -86,7 +86,7 @@ class UserController extends Controller
             $this->userActive->disable($fields['id']);
             return response()->json(ResponseDataBuilder::buildWithoutData("Usuário inativo"));
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 
@@ -101,7 +101,7 @@ class UserController extends Controller
             $this->userActive->enable($fields['id']);
             return response()->json(ResponseDataBuilder::buildWithoutData("Usuário ativo"));
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 

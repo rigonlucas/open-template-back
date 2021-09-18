@@ -37,7 +37,7 @@ class PermissionsController extends Controller
             $fields = $request->validated();
             return response()->json([$this->permissionStore->store($fields['user_id'], $fields['permission'])]);
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 
@@ -46,7 +46,7 @@ class PermissionsController extends Controller
             $fields = $request->validated();
             return response()->json([$this->permissionDelete->delete($fields['id'], $fields['user_id'])], 204);
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 }

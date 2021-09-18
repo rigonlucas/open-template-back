@@ -73,7 +73,11 @@ class User extends Authenticatable
         return $this->hasMany(UserPermission::class)->withCasts(['guard' => 'json']);
     }
 
-    public function address() :HasMany {
-        return $this->hasMany(UserAddress::class);
+    public function address() : HasMany {
+        return $this->hasMany(UserAddress::class)->withTrashed();
+    }
+
+    public function contacts() : HasMany {
+        return $this->hasMany(UserContact::class)->withTrashed();
     }
 }

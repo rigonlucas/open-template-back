@@ -40,7 +40,7 @@ class UsersAddressController extends Controller
         try {
             return response()->json($this->userAddressFind->findAddressAuthById());
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 
@@ -61,7 +61,7 @@ class UsersAddressController extends Controller
                     $fields['complement'],
                     $fields['reference'])], 201);
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 
@@ -76,7 +76,7 @@ class UsersAddressController extends Controller
         try {
             return response()->json([$this->userAddressFind->findAddressAuthByHash($hash)]);
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 
@@ -98,7 +98,7 @@ class UsersAddressController extends Controller
                     $fields['complement'],
                     $fields['reference'], $hash), 200);
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 
@@ -115,7 +115,7 @@ class UsersAddressController extends Controller
         }catch (UserAddressNotFoundException){
             return response()->json(null, 204);
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 
@@ -132,7 +132,7 @@ class UsersAddressController extends Controller
         }catch (UserAddressNotFoundException){
             return response()->json(null, 204);
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 
@@ -149,7 +149,7 @@ class UsersAddressController extends Controller
         }catch (UserAddressNotFoundException){
             return response()->json(null, 204);
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 }

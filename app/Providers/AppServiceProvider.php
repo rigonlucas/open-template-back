@@ -15,14 +15,20 @@ use App\Http\Interfaces\UserAddress\IUserAddressDelete;
 use App\Http\Interfaces\UserAddress\IUserAddressFind;
 use App\Http\Interfaces\UserAddress\IUserAddressStore;
 use App\Http\Interfaces\UserAddress\IUserAddressUpdate;
+use App\Http\Interfaces\UserContact\IUserContactDelete;
+use App\Http\Interfaces\UserContact\IUserContactFind;
+use App\Http\Interfaces\UserContact\IUserContactStore;
+use App\Http\Interfaces\UserContact\IUserContactUpdate;
 use App\Http\Interfaces\UserPermission\IUserPermissionDelete;
 use App\Http\Interfaces\UserPermission\IUserPermissionStore;
 use App\Repositories\Rate\RateFindRepo;
 use App\Repositories\User\UserFindRepo;
 use App\Repositories\UserAddress\UserAddressFindRepo;
+use App\Repositories\UserContact\UserContactFind;
 use App\Services\Rate\RateService;
 use App\Services\User\UserService;
 use App\Services\UserAddress\UserAddressService;
+use App\Services\UserContact\UserContactService;
 use App\Services\UserPermission\UserPermissionService;
 use Illuminate\Support\ServiceProvider;
 
@@ -45,13 +51,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         //BIND ABSTRACT AND CONCRETE
         $this->setRate();
         $this->setUser();
         $this->setUserPermission();
         $this->setUserAddress();
+        $this->setUserContact();
     }
+
+    private function setUserContact(){
+        $this->app->bind(IUserContactFind::class, UserContactFind::class);
+        $this->app->bind(IUserContactStore::class, UserContactService::class);
+        $this->app->bind(IUserContactUpdate::class, UserContactService::class);
+        $this->app->bind(IUserContactDelete::class, UserContactService::class);
+    }
+
     private function setUserAddress(){
         $this->app->bind(IUserAddressFind::class, UserAddressFindRepo::class);
         $this->app->bind(IUserAddressStore::class, UserAddressService::class);

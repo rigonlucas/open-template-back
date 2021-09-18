@@ -40,7 +40,7 @@ class RateController extends Controller
         } catch (RateFoundException){
             return response()->json(null,302);
         } catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 
@@ -52,7 +52,7 @@ class RateController extends Controller
         try {
             return response()->json(null, $this->rateCheck->checkUserRateResponse(Auth::id()));
         }catch (Exception $ex){
-            return response()->json([$ex], 500);
+            return response()->json($ex, 500);
         }
     }
 }

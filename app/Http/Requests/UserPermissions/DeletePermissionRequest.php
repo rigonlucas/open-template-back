@@ -4,7 +4,7 @@ namespace App\Http\Requests\UserPermissions;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePermissionRequest extends FormRequest
+class DeletePermissionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class StorePermissionRequest extends FormRequest
     public function rules()
     {
         return [
-            'permission' => ['required', 'string', 'max:200'],
+            'id' => ['required', 'integer', 'exists:user_permissions,id'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
-            //'guard' => ['required', 'string', 'json']
         ];
     }
 }

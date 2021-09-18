@@ -6,5 +6,5 @@ use App\Models\Rate;
 
 interface IRateStore
 {
-    function store(Array $fields) : Rate;
+    function store(string $text, int $rate_points) : Rate;
 }

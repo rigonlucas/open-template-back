@@ -35,7 +35,7 @@ class RateController extends Controller
 
         try {
             $this->rateCheck->checkUserRate($fields['user_id']);
-            $rate = $this->rateStore->store($fields);
+            $rate = $this->rateStore->store($fields['text'], $fields['rate_points']);
             return response()->json(ResponseDataBuilder::buildWithData("Avaliação realizada", $rate), 201);
         } catch (RateFoundException){
             return response()->json(null,302);

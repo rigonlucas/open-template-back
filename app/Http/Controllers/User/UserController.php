@@ -7,7 +7,7 @@ use App\Helpers\ResponseDataBuilder;
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\User\IUserActive;
 use App\Http\Interfaces\User\IUserFind;
-use App\Http\Interfaces\User\IUserUpdateService;
+use App\Http\Interfaces\User\IUserUpdate;
 use App\Http\Requests\User\DisableUserRequest;
 use App\Http\Requests\User\EnableUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
@@ -17,18 +17,18 @@ use Illuminate\Http\JsonResponse;
 class UserController extends Controller
 {
     private IUserFind $userFind;
-    private IUserUpdateService $userUpdateService;
+    private IUserUpdate $userUpdate;
     private IUserActive $userActive;
 
     /**
      * @param IUserFind $userFind
-     * @param IUserUpdateService $userUpdateService
+     * @param IUserUpdate $userUpdate
      * @param IUserActive $userActive
      */
-    public function __construct(IUserFind $userFind, IUserUpdateService $userUpdateService, IUserActive $userActive)
+    public function __construct(IUserFind $userFind, IUserUpdate $userUpdate, IUserActive $userActive)
     {
         $this->userFind = $userFind;
-        $this->userUpdateService = $userUpdateService;
+        $this->userUpdate = $userUpdate;
         $this->userActive = $userActive;
     }
 
@@ -66,7 +66,8 @@ class UserController extends Controller
     public function update (UpdateUserRequest $request): JsonResponse
     {
         try {
-            return response()->json([$this->userUpdateService->update($request->validated())]);
+            $fields = $request->validated();
+            return response()->json([$this->userUpdate->update($fields['id'] ,$fields['name'], $fields['email'])]);
         }catch (UserNotFoundException){
             return response()->json([null],204);
         }catch (Exception $ex){
@@ -81,7 +82,8 @@ class UserController extends Controller
     public function disable (DisableUserRequest $request): JsonResponse
     {
         try {
-            $this->userActive->disable($request->validated());
+            $fields = $request->validated();
+            $this->userActive->disable($fields['id']);
             return response()->json(ResponseDataBuilder::buildWithoutData("Usuário inativo"));
         }catch (Exception $ex){
             return response()->json([$ex], 500);
@@ -95,7 +97,8 @@ class UserController extends Controller
     public function enable (EnableUserRequest $request): JsonResponse
     {
         try {
-            $this->userActive->enable($request->validated());
+            $fields = $request->validated();
+            $this->userActive->enable($fields['id']);
             return response()->json(ResponseDataBuilder::buildWithoutData("Usuário ativo"));
         }catch (Exception $ex){
             return response()->json([$ex], 500);

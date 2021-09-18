@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Rate\RateController;
 use App\Http\Controllers\User\PermissionsController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,8 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middle
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // only auth
+    Route::post('rate', [RateController::class, 'store'])->name('rate');
+    Route::get('rate/check', [RateController::class, 'checkRateUser'])->name('rate.check');
 });
 
 Route::prefix('admin')->group(function (){

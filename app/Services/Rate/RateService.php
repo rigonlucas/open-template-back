@@ -5,8 +5,11 @@ namespace App\Services\Rate;
 use App\Exceptions\Rate\RateFoundException;
 use App\Http\Interfaces\Rate\IRateCheck;
 use App\Http\Interfaces\Rate\IRateFind;
+use App\Http\Interfaces\Rate\IRateStore;
+use App\Models\Rate;
+use Illuminate\Support\Facades\Auth;
 
-class RateService implements IRateCheck
+class RateService implements IRateCheck, IRateStore
 {
     private IRateFind $rateFind;
 
@@ -32,5 +35,14 @@ class RateService implements IRateCheck
             throw new RateFoundException();
         }
         return true;
+    }
+
+    function store(string $text, int $rate_points): Rate
+    {
+        return Rate::create([
+            'text' => $text,
+            'rate_points' => $rate_points,
+            'user_id' => Auth::id()
+        ]);
     }
 }

@@ -4,5 +4,5 @@ namespace App\Http\Interfaces\User;
 
 interface IUserUpdate
 {
-    function update(array $fields): int;
+    function update(int $id, string $name, string $email): int;
 }

@@ -43,7 +43,7 @@ class AuthController extends Controller
         try {
             $fields = $request->validated();
             Arr::set($fields, 'password', bcrypt($fields['password']));
-            return response()->json(ResponseDataBuilder::buildWithData("Login realizado pelo registro", $this->userRegister->register($fields)), 200);
+            return response()->json(ResponseDataBuilder::buildWithData("Login realizado pelo registro", $this->userRegister->register($fields['name'], $fields['email'], $fields['password'])), 200);
         }catch (Exception $ex){
             return response()->json($ex, 500);
         }
@@ -56,7 +56,8 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         try {
-            return response()->json(ResponseDataBuilder::buildWithData("Login realizado", $this->userLogin->login($request->validated())), 200);
+            $fields = $request->validated();
+            return response()->json(ResponseDataBuilder::buildWithData("Login realizado", $this->userLogin->login($fields['email'], $fields['password'])), 200);
         } catch (CredendialsWrongException){
             return response()->json(ResponseDataBuilder::buildWithoutData("Credenciais erradas"), 401);
         } catch (Exception $ex){

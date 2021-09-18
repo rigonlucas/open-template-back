@@ -4,7 +4,7 @@ namespace App\Http\Interfaces\User;
 
 interface IUserActive
 {
-    function enable(array $field) : bool;
+    function enable(int $id) : bool;
 
-    function disable(array $field) : bool;
+    function disable(int $id) : bool;
 }

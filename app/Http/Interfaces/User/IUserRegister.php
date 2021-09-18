@@ -6,5 +6,5 @@ use App\Models\User;
 
 interface IUserRegister
 {
-    function register(Array $fields): array;
+    function register(string $name, string $email, string $password): array;
 }

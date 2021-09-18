@@ -6,5 +6,5 @@ use App\Models\UserPermission;
 
 interface IUserPermissionStore
 {
-    function store(Array $fields): UserPermission;
+    function store(int $user_id, int $permission): ?UserPermission;
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersPermissionsTable extends Migration
+class CreateUsersAddressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateUsersPermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_permissions', function (Blueprint $table) {
+        Schema::create('users_addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('permission', 200);
-            $table->json('guard')->nullable();
+            $table->text('address');
+            $table->bigInteger('number');
+            $table->string('complement', 300);
+            $table->text('reference');
             $table->timestampsTz();
+            $table->softDeletesTz();
 
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -31,6 +34,6 @@ class CreateUsersPermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_permissions');
+        Schema::dropIfExists('users_addresses');
     }
 }

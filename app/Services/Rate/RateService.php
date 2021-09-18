@@ -13,11 +13,18 @@ class RateService implements IRateCheck, IRateStore
 {
     private IRateFind $rateFind;
 
+    /**
+     * @param IRateFind $rateFind
+     */
     public function __construct(IRateFind $rateFind)
     {
         $this->rateFind = $rateFind;
     }
 
+    /**
+     * @param int $user_id
+     * @return int
+     */
     function checkUserRateResponse(int $user_id): int
     {
         $rateCount = $this->rateFind->findUserRate($user_id)->count();
@@ -28,6 +35,11 @@ class RateService implements IRateCheck, IRateStore
         }
     }
 
+    /**
+     * @param int $user_id
+     * @return bool
+     * @throws RateFoundException
+     */
     function checkUserRate(int $user_id): bool
     {
         $rateCount = $this->rateFind->findUserRate($user_id)->count();
@@ -37,6 +49,11 @@ class RateService implements IRateCheck, IRateStore
         return true;
     }
 
+    /**
+     * @param string $text
+     * @param int $rate_points
+     * @return Rate
+     */
     function store(string $text, int $rate_points): Rate
     {
         return Rate::create([

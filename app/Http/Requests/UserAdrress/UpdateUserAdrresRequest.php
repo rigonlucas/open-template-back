@@ -13,7 +13,7 @@ class UpdateUserAdrresRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UpdateUserAdrresRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'postal_code' => ['required', 'string', 'max:300'],
+            'address' => ['required', 'string'],
+            'number' => ['required', 'integer'],
+            'complement' => ['required', 'string', 'max:300'],
+            'reference' => ['required','string'],
         ];
     }
 }

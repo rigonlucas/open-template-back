@@ -26,5 +26,15 @@ class UserAddress extends Model
 
     protected $table = 'users_addresses';
 
+    protected $fillable =[
+        'postal_code',
+        'address',
+        'number',
+        'complement',
+        'reference',
+        'user_id',
+        'hash',
+    ];
+
 
 }

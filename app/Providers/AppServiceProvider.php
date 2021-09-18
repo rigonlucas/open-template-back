@@ -11,12 +11,18 @@ use App\Http\Interfaces\User\IUserLogin;
 use App\Http\Interfaces\User\IUserLogout;
 use App\Http\Interfaces\User\IUserRegister;
 use App\Http\Interfaces\User\IUserUpdate;
+use App\Http\Interfaces\UserAddress\IUserAddressDelete;
+use App\Http\Interfaces\UserAddress\IUserAddressFind;
+use App\Http\Interfaces\UserAddress\IUserAddressStore;
+use App\Http\Interfaces\UserAddress\IUserAddressUpdate;
 use App\Http\Interfaces\UserPermission\IUserPermissionDelete;
 use App\Http\Interfaces\UserPermission\IUserPermissionStore;
 use App\Repositories\Rate\RateFindRepo;
 use App\Repositories\User\UserFindRepo;
+use App\Repositories\UserAddress\UserAddressFindRepo;
 use App\Services\Rate\RateService;
 use App\Services\User\UserService;
+use App\Services\UserAddress\UserAddressService;
 use App\Services\UserPermission\UserPermissionService;
 use Illuminate\Support\ServiceProvider;
 
@@ -44,12 +50,18 @@ class AppServiceProvider extends ServiceProvider
         $this->setRate();
         $this->setUser();
         $this->setUserPermission();
+        $this->setUserAddress();
+    }
+    private function setUserAddress(){
+        $this->app->bind(IUserAddressFind::class, UserAddressFindRepo::class);
+        $this->app->bind(IUserAddressStore::class, UserAddressService::class);
+        $this->app->bind(IUserAddressUpdate::class, UserAddressService::class);
+        $this->app->bind(IUserAddressDelete::class, UserAddressService::class);
     }
 
     private function setUserPermission() {
         $this->app->bind(IUserPermissionStore::class, UserPermissionService::class);
         $this->app->bind(IUserPermissionDelete::class, UserPermissionService::class);
-
     }
     private function setUser(){
         $this->app->bind(IUserFind::class, UserFindRepo::class);

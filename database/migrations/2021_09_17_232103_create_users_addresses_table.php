@@ -16,10 +16,12 @@ class CreateUsersAddressesTable extends Migration
         Schema::create('users_addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('postal_code', 300);
             $table->text('address');
             $table->bigInteger('number');
             $table->string('complement', 300);
             $table->text('reference');
+            $table->string('hash', 255);
             $table->timestampsTz();
             $table->softDeletesTz();
 

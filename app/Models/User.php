@@ -24,6 +24,9 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Timestamp updated_at
  *
  * Class User
+ * @property-read Rate $rates
+ * @property-read UserPermission $permission
+ * @property-read UserAddress $address
  * @package App\Models
  */
 class User extends Authenticatable

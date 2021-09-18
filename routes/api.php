@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Rate\RateController;
 use App\Http\Controllers\User\PermissionsController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\UsersAddressController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,8 +24,18 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middle
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // only auth
+
+    // RATE
     Route::post('rate', [RateController::class, 'store'])->name('rate');
     Route::get('rate/check', [RateController::class, 'checkRateUser'])->name('rate.check');
+
+    // USERS ADDRESSES
+    Route::get('user/address/list', [UsersAddressController::class, 'index'])->name('user.address.index');
+    Route::get('user/address/show/{id}', [UsersAddressController::class, 'show'])->name('user.address.show');
+    Route::post('user/address/store', [UsersAddressController::class, 'store'])->name('user.address.store');
+    Route::put('user/address/update/{id}', [UsersAddressController::class, 'update'])->name('user.address.update');
+    Route::delete('user/address/delete/{id}', [UsersAddressController::class, 'delete'])->name('user.address.delete');
+    Route::delete('user/address/forceDelete/{id}', [UsersAddressController::class, 'forceDelete'])->name('user.address.forceDelete');
 });
 
 Route::prefix('admin')->group(function (){

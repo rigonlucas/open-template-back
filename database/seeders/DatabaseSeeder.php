@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(100)->create();
+        \App\Models\User::factory(10)->create();
         foreach (User::all() as $item){
             UserPermission::create(['user_id' => $item->id, 'permission' => 'only_auth', 'guard' => '[{"read": "true"}, {"store": "true"}, {"update": "true"}, {"delete": "true"}]']);
         }

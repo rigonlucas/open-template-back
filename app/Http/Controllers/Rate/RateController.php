@@ -18,6 +18,10 @@ class RateController extends Controller
     private IRateStore $rateStore;
     private IRateCheck $rateCheck;
 
+    /**
+     * @param IRateStore $rateStore
+     * @param IRateCheck $rateCheck
+     */
     public function __construct(IRateStore $rateStore, IRateCheck $rateCheck)
     {
         $this->rateStore = $rateStore;

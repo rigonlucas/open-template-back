@@ -41,7 +41,12 @@ class PermissionsController extends Controller
         }
     }
 
-    public function delete(DeletePermissionRequest $request){
+    /**
+     * @param DeletePermissionRequest $request
+     * @return JsonResponse
+     */
+    public function delete(DeletePermissionRequest $request): JsonResponse
+    {
         try {
             $fields = $request->validated();
             return response()->json([$this->permissionDelete->delete($fields['id'], $fields['user_id'])], 204);

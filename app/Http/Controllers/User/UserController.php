@@ -32,7 +32,6 @@ class UserController extends Controller
         $this->userActive = $userActive;
     }
 
-
     /**
      * @return JsonResponse
      */
@@ -44,7 +43,6 @@ class UserController extends Controller
             return response()->json($ex, 500);
         }
     }
-
 
     /**
      * @param int $user_id

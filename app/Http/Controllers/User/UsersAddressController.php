@@ -22,6 +22,12 @@ class UsersAddressController extends Controller
     private IUserAddressUpdate $userAddressUpdate;
     private IUserAddressDelete $userAddressDelete;
 
+    /**
+     * @param IUserAddressFind $userAddressFind
+     * @param IUserAddressStore $userAddressStore
+     * @param IUserAddressUpdate $userAddressUpdate
+     * @param IUserAddressDelete $userAddressDelete
+     */
     public function __construct(IUserAddressFind $userAddressFind, IUserAddressStore $userAddressStore, IUserAddressUpdate $userAddressUpdate, IUserAddressDelete $userAddressDelete)
     {
         $this->userAddressFind = $userAddressFind;

@@ -60,6 +60,11 @@ class UserContactService implements IUserContactStore, IUserContactDelete, IUser
         ]);
     }
 
+    /**
+     * @param string $hash
+     * @return bool
+     * @throws UserContactNotFoundException
+     */
     function delete(string $hash): bool
     {
         $userContact = UserContact::withTrashed()->where('hash', $hash)->first();
@@ -69,6 +74,11 @@ class UserContactService implements IUserContactStore, IUserContactDelete, IUser
         return $userContact->delete();
     }
 
+    /**
+     * @param string $hash
+     * @return bool
+     * @throws UserContactNotFoundException
+     */
     function restore(string $hash): bool
     {
         $userContact = UserContact::withTrashed()->where('hash', $hash)->first();
@@ -77,6 +87,12 @@ class UserContactService implements IUserContactStore, IUserContactDelete, IUser
         }
         return $userContact->restore();
     }
+
+    /**
+     * @param string $hash
+     * @return bool
+     * @throws UserContactNotFoundException
+     */
     function forceDelete(string $hash): bool
     {
         $userContact = UserContact::withTrashed()->where('hash', $hash)->first();

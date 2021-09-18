@@ -24,6 +24,12 @@ class UserContactController extends Controller
     private IUserContactDelete $userContactDelete;
     private IUserContactUpdate $userContactUpdate;
 
+    /**
+     * @param IUserContactFind $userContactFind
+     * @param IUserContactStore $userContactStore
+     * @param IUserContactUpdate $userContactUpdate
+     * @param IUserContactDelete $userContactDelete
+     */
     public function __construct(IUserContactFind $userContactFind, IUserContactStore $userContactStore, IUserContactUpdate $userContactUpdate, IUserContactDelete $userContactDelete)
     {
         $this->userContactFind = $userContactFind;

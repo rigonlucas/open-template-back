@@ -21,7 +21,8 @@ class UserContactFind implements IUserContactFind
 
     /**
      * @param string $hash
-     * @return UserContact
+     * @return UserContact|null
+     * @throws UserContactNotFoundException
      */
     function findContactByHash(string $hash): ?UserContact
     {

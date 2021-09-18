@@ -9,6 +9,10 @@ use Illuminate\Support\Collection;
 class RateFindRepo implements IRateFind
 {
 
+    /**
+     * @param int $user_id
+     * @return Collection
+     */
     function findUserRate(int $user_id) : Collection
     {
         return Rate::where('user_id', $user_id)->get();

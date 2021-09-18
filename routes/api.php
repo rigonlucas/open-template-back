@@ -48,5 +48,6 @@ Route::prefix('superadmin')->group(function (){
          * USER PERMISSIONS MANAGER
          */
         Route::post('permissions/store', [PermissionsController::class, 'store'])->name('superadmin.permission.store');
+        Route::delete('permissions/delete', [PermissionsController::class, 'delete'])->name('superadmin.permission.delete');
     });
 });

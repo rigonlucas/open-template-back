@@ -9,13 +9,16 @@ use App\Models\UserPermission;
 class UserPermissionService implements IUserPermissionStore, IUserPermissionDelete
 {
 
-    function store(int $user_id, int $permission): ?UserPermission
+    function store(int $user_id, string $permission): ?UserPermission
     {
-        dd($user_id, $permission);
+        return UserPermission::updateOrCreate([
+            'user_id' => $user_id,
+            'permission' => $permission,
+        ]);
     }
 
     function delete(int $id, int $user_id): bool
     {
-        dd($id, $user_id);
+        return UserPermission::where('id', $id)->where('user_id', $user_id)->delete();
     }
 }

@@ -39,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        //BIND ABSTRACT AND CONCRETE
         $this->setRate();
         $this->setUser();
         $this->setUserPermission();
@@ -47,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
     private function setUserPermission() {
         $this->app->bind(IUserPermissionStore::class, UserPermissionService::class);
         $this->app->bind(IUserPermissionDelete::class, UserPermissionService::class);
+
     }
     private function setUser(){
         $this->app->bind(IUserFind::class, UserFindRepo::class);

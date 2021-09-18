@@ -21,8 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class UserAddress extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'users_addresses';
 

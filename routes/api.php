@@ -23,10 +23,12 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware( 'auth:sanctum');
 
+// only auth
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    // only auth
 
-    // RATE
+    /**
+     * USER RATE
+     */
     Route::post('rate', [RateController::class, 'store'])->name('rate');
     Route::get('rate/check', [RateController::class, 'checkRateUser'])->name('rate.check');
 
@@ -34,28 +36,35 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 Route::prefix('account')->group(function (){
     Route::group(['middleware' => ['auth:sanctum']], function () {
-        // USERS ADDRESSES
-        Route::get('address/list', [UsersAddressController::class, 'index'])->name('user.address.index');
-        Route::get('address/show/{hash}', [UsersAddressController::class, 'show'])->name('user.address.show');
-        Route::post('address/store', [UsersAddressController::class, 'store'])->name('user.address.store');
-        Route::put('address/update/{hash}', [UsersAddressController::class, 'update'])->name('user.address.update');
-        Route::delete('address/delete/{hash}', [UsersAddressController::class, 'delete'])->name('user.address.delete');
-        Route::patch('address/restore/{hash}', [UsersAddressController::class, 'restore'])->name('user.address.restore');
-        Route::delete('address/forceDelete/{hash}', [UsersAddressController::class, 'forceDelete'])->name('user.address.forceDelete');
+        /**
+         * USER ADDRESS
+         */
+        Route::get('address/list', [UsersAddressController::class, 'index'])->name('account.address.index');
+        Route::get('address/show/{hash}', [UsersAddressController::class, 'show'])->name('account.address.show');
+        Route::post('address/store', [UsersAddressController::class, 'store'])->name('account.address.store');
+        Route::put('address/update/{hash}', [UsersAddressController::class, 'update'])->name('account.address.update');
+        Route::delete('address/delete/{hash}', [UsersAddressController::class, 'delete'])->name('account.address.delete');
+        Route::patch('address/restore/{hash}', [UsersAddressController::class, 'restore'])->name('account.address.restore');
+        Route::delete('address/forceDelete/{hash}', [UsersAddressController::class, 'forceDelete'])->name('account.address.forceDelete');
 
-        // USER CONTACTS
-        Route::get('contact/list', [UserContactController::class, 'index'])->name('user.contact.index');
-        Route::get('contact/show/{hash}', [UserContactController::class, 'show'])->name('user.contact.show');
-        Route::post('contact/store', [UserContactController::class, 'store'])->name('user.contact.store');
-        Route::put('contact/update/{hash}', [UserContactController::class, 'update'])->name('user.contact.update');
-        Route::delete('contact/delete/{hash}', [UserContactController::class, 'delete'])->name('user.contact.delete');
-        Route::patch('contact/restore/{hash}', [UserContactController::class, 'restore'])->name('user.contact.restore');
-        Route::delete('contact/forceDelete/{hash}', [UserContactController::class, 'forceDelete'])->name('user.contact.forceDelete');
+        /**
+         * USER CONTACTS
+         */
+        Route::get('contact/list', [UserContactController::class, 'index'])->name('account.contact.index');
+        Route::get('contact/show/{hash}', [UserContactController::class, 'show'])->name('account.contact.show');
+        Route::post('contact/store', [UserContactController::class, 'store'])->name('account.contact.store');
+        Route::put('contact/update/{hash}', [UserContactController::class, 'update'])->name('account.contact.update');
+        Route::delete('contact/delete/{hash}', [UserContactController::class, 'delete'])->name('account.contact.delete');
+        Route::patch('contact/restore/{hash}', [UserContactController::class, 'restore'])->name('account.contact.restore');
+        Route::delete('contact/forceDelete/{hash}', [UserContactController::class, 'forceDelete'])->name('account.contact.forceDelete');
     });
 });
 
 Route::prefix('admin')->group(function (){
     Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
+        /**
+         * >>>>>>>>>
+         */
 
     });
 });

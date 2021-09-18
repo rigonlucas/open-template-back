@@ -9,6 +9,7 @@ use App\Http\Interfaces\UserContact\IUserContactStore;
 use App\Http\Interfaces\UserContact\IUserContactUpdate;
 use App\Models\UserContact;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class UserContactService implements IUserContactStore, IUserContactDelete, IUserContactUpdate
 {
@@ -49,11 +50,13 @@ class UserContactService implements IUserContactStore, IUserContactDelete, IUser
      */
     function update(string $type, string $contact, string $description, string $hash): int
     {
-        $userContac = UserContact::where('contact', $contact)->where('hash', '!=',$hash)->first();
-        if($userContac != null){
+        $userContact = UserContact::withTrashed()->where('contact', $contact)->where('hash', '!=',$hash)->first();
+        if($userContact != null){
             throw new UserContactExistException();
         }
-        return UserContact::where('hash', $hash)->update([
+        $userContact = UserContact::withTrashed()->where('hash', $hash)->first();
+        Gate::authorize('update', $userContact);
+        return $userContact->update([
             'type' => $type,
             'contact' => $contact,
             'description' => $description,
@@ -71,6 +74,7 @@ class UserContactService implements IUserContactStore, IUserContactDelete, IUser
         if($userContact == null){
             throw new UserContactNotFoundException();
         }
+        Gate::authorize('delete', $userContact);
         return $userContact->delete();
     }
 
@@ -85,6 +89,7 @@ class UserContactService implements IUserContactStore, IUserContactDelete, IUser
         if($userContact == null){
             throw new UserContactNotFoundException();
         }
+        Gate::authorize('restore', $userContact);
         return $userContact->restore();
     }
 
@@ -99,6 +104,7 @@ class UserContactService implements IUserContactStore, IUserContactDelete, IUser
         if($userContact == null){
             throw new UserContactNotFoundException();
         }
+        Gate::authorize('forceDelete', $userContact);
         return $userContact->forceDelete();
     }
 }

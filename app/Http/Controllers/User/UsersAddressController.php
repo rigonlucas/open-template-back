@@ -134,7 +134,7 @@ class UsersAddressController extends Controller
     public function restore(string $hash): JsonResponse
     {
         try {
-            return response()->json(ResponseDataBuilder::buildWithData('Endereço restaurado', $this->userAddressDelete->delete($hash)), 200);
+            return response()->json(ResponseDataBuilder::buildWithData('Endereço restaurado', $this->userAddressDelete->restore($hash)), 200);
         }catch (UserAddressNotFoundException){
             return response()->json(null, 204);
         }catch (Exception $ex){

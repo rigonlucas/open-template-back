@@ -6,7 +6,9 @@ use App\Http\Interfaces\UserAddress\IUserAddressDelete;
 use App\Http\Interfaces\UserAddress\IUserAddressStore;
 use App\Http\Interfaces\UserAddress\IUserAddressUpdate;
 use App\Models\UserAddress;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class UserAddressService implements IUserAddressStore,IUserAddressUpdate, IUserAddressDelete
 {
@@ -40,10 +42,13 @@ class UserAddressService implements IUserAddressStore,IUserAddressUpdate, IUserA
      * @param string $reference
      * @param string $hash
      * @return int
+     * @throws AuthorizationException
      */
     function update(string $postal_code, string $address, int $number, string $complement, string $reference, string $hash): int
     {
-        return UserAddress::where('hash', $hash)->update([
+        $userAddress = UserAddress::withTrashed()->where('hash', $hash)->first();
+        Gate::authorize('update', $userAddress);
+        return $userAddress->update([
             'postal_code' => $postal_code,
             'address' => $address,
             'number' => $number,
@@ -64,6 +69,7 @@ class UserAddressService implements IUserAddressStore,IUserAddressUpdate, IUserA
         if($userAddress == null){
             throw new UserAddressNotFoundException();
         }
+        Gate::authorize('delete', $userAddress);
         return $userAddress->delete();
     }
 
@@ -78,6 +84,7 @@ class UserAddressService implements IUserAddressStore,IUserAddressUpdate, IUserA
         if($userAddress == null){
             throw new UserAddressNotFoundException();
         }
+        Gate::authorize('restore', $userAddress);
         return $userAddress->restore();
     }
 
@@ -92,6 +99,7 @@ class UserAddressService implements IUserAddressStore,IUserAddressUpdate, IUserA
         if($userAddress == null){
             throw new UserAddressNotFoundException();
         }
+        Gate::authorize('forceDelete', $userAddress);
         return $userAddress->forceDelete();
     }
 

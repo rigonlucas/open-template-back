@@ -2,7 +2,7 @@
 
 namespace App\Http\Interfaces\User;
 
-interface IUserLogin
+interface IUserAPILogin
 {
     function login(string $email, string $password): array;
 }

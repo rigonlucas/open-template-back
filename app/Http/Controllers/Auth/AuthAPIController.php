@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Exceptions\Auth\CredendialsWrongException;
 use App\Helpers\ResponseDataBuilder;
 use App\Http\Controllers\Controller;
-use App\Http\Interfaces\User\IUserLogin;
-use App\Http\Interfaces\User\IUserLogout;
-use App\Http\Interfaces\User\IUserRegister;
+use App\Http\Interfaces\User\IUserAPILogin;
+use App\Http\Interfaces\User\IUserAPILogout;
+use App\Http\Interfaces\User\IUserAPIRegister;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use Exception;
@@ -15,19 +15,19 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
-class AuthController extends Controller
+class AuthAPIController extends Controller
 {
-    private IUserRegister $userRegister;
-    private IUserLogin $userLogin;
-    private IUserLogout $userLogout;
+    private IUserAPIRegister $userRegister;
+    private IUserAPILogin $userLogin;
+    private IUserAPILogout $userLogout;
 
 
     /**
-     * @param IUserRegister $userRegister
-     * @param IUserLogin $userLogin
-     * @param IUserLogout $userLogout
+     * @param IUserAPIRegister $userRegister
+     * @param IUserAPILogin $userLogin
+     * @param IUserAPILogout $userLogout
      */
-    public function __construct(IUserRegister $userRegister, IUserLogin $userLogin, IUserLogout $userLogout)
+    public function __construct(IUserAPIRegister $userRegister, IUserAPILogin $userLogin, IUserAPILogout $userLogout)
     {
         $this->userRegister = $userRegister;
         $this->userLogin = $userLogin;

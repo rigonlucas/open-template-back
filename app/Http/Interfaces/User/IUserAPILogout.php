@@ -2,7 +2,7 @@
 
 namespace App\Http\Interfaces\User;
 
-interface IUserLogout
+interface IUserAPILogout
 {
     function singleLogout();
 }

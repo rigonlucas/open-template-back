@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Services\User;
+namespace App\Services\Auth;
 
 use App\Exceptions\Auth\CredendialsWrongException;
 use App\Exceptions\User\UserNotFoundException;
 use App\Http\Interfaces\User\IUserFindRepo;
-use App\Http\Interfaces\User\IUserRegister;
-use App\Http\Interfaces\User\IUserLogin;
-use App\Http\Interfaces\User\IUserLogout;
+use App\Http\Interfaces\User\IUserAPIRegister;
+use App\Http\Interfaces\User\IUserAPILogin;
+use App\Http\Interfaces\User\IUserAPILogout;
 use App\Http\Interfaces\User\IUserActive;
 use App\Http\Interfaces\User\IUserUpdate;
 use App\Models\User;
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
-class UserService implements IUserRegister, IUserLogin, IUserLogout, IUserActive, IUserUpdate
+class AuthAPIService implements IUserAPIRegister, IUserAPILogin, IUserAPILogout, IUserActive, IUserUpdate
 {
     private IUserFindRepo $userFind;
 

@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             $this->registerRoutesAPI();
-            //$this->registerRoutesWEB();
+            $this->registerRoutesWEB();
         });
     }
 
@@ -58,9 +58,9 @@ class RouteServiceProvider extends ServiceProvider
      * Registra os grupos de rotas para WEB -  Está desabilitado para apenas aceitar API
      */
     protected function registerRoutesWEB(){
-//            Route::middleware('web')
-//                ->namespace($this->namespace)
-//                ->group(base_path('routes/web.php'));
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web.php'));
     }
 
     /**

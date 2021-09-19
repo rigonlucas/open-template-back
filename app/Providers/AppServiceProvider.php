@@ -11,6 +11,9 @@ use App\Http\Interfaces\User\IUserAPILogin;
 use App\Http\Interfaces\User\IUserAPILogout;
 use App\Http\Interfaces\User\IUserAPIRegister;
 use App\Http\Interfaces\User\IUserUpdate;
+use App\Http\Interfaces\User\IUserWebLogin;
+use App\Http\Interfaces\User\IUserWebLogout;
+use App\Http\Interfaces\User\IUserWebRegister;
 use App\Http\Interfaces\UserAddress\IUserAddressDelete;
 use App\Http\Interfaces\UserAddress\IUserAddressFindRepo;
 use App\Http\Interfaces\UserAddress\IUserAddressStore;
@@ -81,11 +84,15 @@ class AppServiceProvider extends ServiceProvider
 
     private function setUser(){
         $this->app->bind(IUserFindRepo::class, UserFindRepo::class);
-        $this->app->bind(IUserAPIRegister::class, AuthAPIService::class, [AuthWebService::class]);
-        $this->app->bind(IUserAPILogin::class, AuthAPIService::class, [AuthWebService::class]);
-        $this->app->bind(IUserAPILogout::class, AuthAPIService::class, [AuthWebService::class]);
+        $this->app->bind(IUserAPIRegister::class, AuthAPIService::class);
+        $this->app->bind(IUserAPILogin::class, AuthAPIService::class);
+        $this->app->bind(IUserAPILogout::class, AuthAPIService::class);
         $this->app->bind(IUserUpdate::class, AuthAPIService::class);
         $this->app->bind(IUserActive::class, AuthAPIService::class);
+
+        $this->app->bind(IUserWebRegister::class, AuthWebService::class);
+        $this->app->bind(IUserWebLogin::class, AuthWebService::class);
+        $this->app->bind(IUserWebLogout::class, AuthWebService::class);
     }
 
     private function setRate(){

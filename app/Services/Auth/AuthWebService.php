@@ -2,16 +2,33 @@
 
 namespace App\Services\Auth;
 
-use App\Http\Interfaces\User\IUserAPILogin;
-use App\Http\Interfaces\User\IUserAPILogout;
-use App\Http\Interfaces\User\IUserAPIRegister;
+use App\Exceptions\Auth\CredendialsWrongException;
+use App\Http\Interfaces\User\IUserFindRepo;
+use App\Http\Interfaces\User\IUserWebLogin;
+use App\Http\Interfaces\User\IUserWebLogout;
+use App\Http\Interfaces\User\IUserWebRegister;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class AuthWebService implements IUserAPIRegister, IUserAPILogin, IUserAPILogout
+class AuthWebService implements IUserWebRegister, IUserWebLogin, IUserWebLogout
 {
+    private IUserFindRepo $userFindRepo;
 
-    function login(string $email, string $password): array
+    public function __construct(IUserFindRepo $userFindRepo)
     {
-        // TODO: Implement login() method.
+        $this->userFindRepo = $userFindRepo;
+    }
+
+    function login(string $email, string $password): ?User
+    {
+        $user = $this->userFindRepo->findLogin($email);
+
+        if(!$user || !Hash::check($password, $user->password)){
+            throw new CredendialsWrongException();
+        }
+        Auth::login($user);
+        return $user;
     }
 
     function singleLogout()

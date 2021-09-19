@@ -18,6 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware' => ['auth']], function (){
+    Route::get('/home', function () {
+        return view('welcome');
+    })->name('home');
+});
+
 Route::get('login', [AuthWebController::class, 'createLogin'])->name('login');
 Route::post('login', [AuthWebController::class, 'login'])->name('post.login');
 

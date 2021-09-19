@@ -6,5 +6,5 @@ use Illuminate\Support\Collection;
 
 interface IRateFindRepo
 {
-    function findUserRate(int $user_id) : Collection;
+    function findUserRateByUserId(int $user_id) : Collection;
 }

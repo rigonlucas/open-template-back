@@ -77,6 +77,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IUserPermissionStore::class, UserPermissionService::class);
         $this->app->bind(IUserPermissionDelete::class, UserPermissionService::class);
     }
+
     private function setUser(){
         $this->app->bind(IUserFindRepo::class, UserFindRepo::class);
         $this->app->bind(IUserRegister::class, UserService::class);

@@ -27,7 +27,7 @@ class RateService implements IRateCheck, IRateStore
      */
     function checkUserRateResponse(int $user_id): int
     {
-        $rateCount = $this->rateFind->findUserRate($user_id)->count();
+        $rateCount = $this->rateFind->findUserRateByUserId($user_id)->count();
         if($rateCount > 0){
             return 302;
         }else{
@@ -42,7 +42,7 @@ class RateService implements IRateCheck, IRateStore
      */
     function checkUserRate(int $user_id): bool
     {
-        $rateCount = $this->rateFind->findUserRate($user_id)->count();
+        $rateCount = $this->rateFind->findUserRateByUserId($user_id)->count();
         if($rateCount > 0){
             throw new RateFoundException();
         }

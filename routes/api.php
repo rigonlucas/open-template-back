@@ -57,6 +57,11 @@ Route::prefix('account')->group(function (){
         Route::delete('contact/delete/{hash}', [UserContactController::class, 'delete'])->name('account.contact.delete');
         Route::patch('contact/restore/{hash}', [UserContactController::class, 'restore'])->name('account.contact.restore');
         Route::delete('contact/forceDelete/{hash}', [UserContactController::class, 'forceDelete'])->name('account.contact.forceDelete');
+
+        /**
+         * USER REGISTER
+         */
+        Route::put('user/update', [UserController::Class, 'update'])->name('account.user.update');
     });
 });
 
@@ -76,7 +81,6 @@ Route::prefix('superadmin')->group(function (){
          */
         Route::get('user/list', [UserController::Class, 'index'])->name('superadmin.user.list');
         Route::get('user/show/{id}', [UserController::Class, 'show'])->name('superadmin.user.show.id');
-        Route::put('user/update', [UserController::Class, 'update'])->name('superadmin.user.update');
         Route::put('user/disable', [UserController::Class, 'disable'])->name('superadmin.user.disable');
         Route::put('user/enable', [UserController::Class, 'enable'])->name('superadmin.user.enable');
 

@@ -13,6 +13,7 @@ use App\Http\Interfaces\User\IUserUpdate;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserService implements IUserRegister, IUserLogin, IUserLogout, IUserActive, IUserUpdate
@@ -44,7 +45,6 @@ class UserService implements IUserRegister, IUserLogin, IUserLogout, IUserActive
     {
         return User::withTrashed()->find($id)->delete();
     }
-
 
     /**
      * @param string $email
@@ -91,7 +91,6 @@ class UserService implements IUserRegister, IUserLogin, IUserLogout, IUserActive
         ];
     }
 
-
     /**
      * @param int $id
      * @param string $name
@@ -108,6 +107,7 @@ class UserService implements IUserRegister, IUserLogin, IUserLogout, IUserActive
         if($user->email != $email){
             Arr::set($fields, 'email_verified_at', null);
         }
+        Gate::authorize('update', $user);
         return $user->update([
             'name' => $name,
             'email' => $email

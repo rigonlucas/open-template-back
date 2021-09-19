@@ -16,11 +16,11 @@ class UserAddressPolicy
      *
      * @param User $user
      * @param UserAddress $userAddress
-     * @return bool
+     * @return Response
      */
-    public function view(User $user, UserAddress $userAddress): bool
+    public function view(User $user, UserAddress $userAddress): Response
     {
-        return $user->id === $userAddress->user_id;
+        return $user->id === $userAddress->user_id  ? Response::allow() : Response::deny('Unauthorized', 401);
     }
 
     /**
@@ -39,11 +39,11 @@ class UserAddressPolicy
      *
      * @param User $user
      * @param UserAddress $userAddress
-     * @return bool
+     * @return Response
      */
-    public function update(User $user, UserAddress $userAddress): bool
+    public function update(User $user, UserAddress $userAddress): Response
     {
-        return $user->id === $userAddress->user_id;
+        return $user->id === $userAddress->user_id ? Response::allow() : Response::deny('Unauthorized', 401);
     }
 
     /**
@@ -51,11 +51,11 @@ class UserAddressPolicy
      *
      * @param User $user
      * @param UserAddress $userAddress
-     * @return bool
+     * @return Response
      */
-    public function delete(User $user, UserAddress $userAddress): bool
+    public function delete(User $user, UserAddress $userAddress): Response
     {
-        return $user->id === $userAddress->user_id;
+        return $user->id === $userAddress->user_id ? Response::allow() : Response::deny('Unauthorized', 401);
     }
 
     /**
@@ -63,11 +63,11 @@ class UserAddressPolicy
      *
      * @param User $user
      * @param UserAddress $userAddress
-     * @return bool
+     * @return Response
      */
-    public function restore(User $user, UserAddress $userAddress): bool
+    public function restore(User $user, UserAddress $userAddress): Response
     {
-        return $user->id === $userAddress->user_id;
+        return $user->id === $userAddress->user_id ? Response::allow() : Response::deny('Unauthorized', 401);
     }
 
     /**
@@ -75,10 +75,10 @@ class UserAddressPolicy
      *
      * @param User $user
      * @param UserAddress $userAddress
-     * @return bool
+     * @return Response
      */
-    public function forceDelete(User $user, UserAddress $userAddress): bool
+    public function forceDelete(User $user, UserAddress $userAddress): Response
     {
-        return $user->id === $userAddress->user_id;
+        return $user->id === $userAddress->user_id ? Response::allow() : Response::deny('Unauthorized', 401);
     }
 }

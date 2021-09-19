@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  *
  * Class User
  * @package App\Models
+ * @method static create(string[] $array)
+ * @method static update(string[] $array)
  */
 class UserPermission extends Model
 {

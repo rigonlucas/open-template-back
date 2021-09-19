@@ -3,12 +3,12 @@
 namespace App\Repositories\UserContact;
 
 use App\Exceptions\UserContact\UserContactNotFoundException;
-use App\Http\Interfaces\UserContact\IUserContactFind;
+use App\Http\Interfaces\UserContact\IUserContactFindRepo;
 use App\Models\UserContact;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
-class UserContactFind implements IUserContactFind
+class UserContactFind implements IUserContactFindRepo
 {
 
     /**

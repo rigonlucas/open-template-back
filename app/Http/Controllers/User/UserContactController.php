@@ -7,7 +7,7 @@ use App\Exceptions\UserContact\UserContactNotFoundException;
 use App\Helpers\ResponseDataBuilder;
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\UserContact\IUserContactDelete;
-use App\Http\Interfaces\UserContact\IUserContactFind;
+use App\Http\Interfaces\UserContact\IUserContactFindRepo;
 use App\Http\Interfaces\UserContact\IUserContactStore;
 use App\Http\Interfaces\UserContact\IUserContactUpdate;
 use App\Http\Requests\UserContact\StoreUserContactRequest;
@@ -19,18 +19,18 @@ use Illuminate\Http\Response;
 
 class UserContactController extends Controller
 {
-    private IUserContactFind $userContactFind;
+    private IUserContactFindRepo $userContactFind;
     private IUserContactStore $userContactStore;
     private IUserContactDelete $userContactDelete;
     private IUserContactUpdate $userContactUpdate;
 
     /**
-     * @param IUserContactFind $userContactFind
+     * @param IUserContactFindRepo $userContactFind
      * @param IUserContactStore $userContactStore
      * @param IUserContactUpdate $userContactUpdate
      * @param IUserContactDelete $userContactDelete
      */
-    public function __construct(IUserContactFind $userContactFind, IUserContactStore $userContactStore, IUserContactUpdate $userContactUpdate, IUserContactDelete $userContactDelete)
+    public function __construct(IUserContactFindRepo $userContactFind, IUserContactStore $userContactStore, IUserContactUpdate $userContactUpdate, IUserContactDelete $userContactDelete)
     {
         $this->userContactFind = $userContactFind;
         $this->userContactStore = $userContactStore;

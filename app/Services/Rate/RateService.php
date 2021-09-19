@@ -4,19 +4,19 @@ namespace App\Services\Rate;
 
 use App\Exceptions\Rate\RateFoundException;
 use App\Http\Interfaces\Rate\IRateCheck;
-use App\Http\Interfaces\Rate\IRateFind;
+use App\Http\Interfaces\Rate\IRateFindRepo;
 use App\Http\Interfaces\Rate\IRateStore;
 use App\Models\Rate;
 use Illuminate\Support\Facades\Auth;
 
 class RateService implements IRateCheck, IRateStore
 {
-    private IRateFind $rateFind;
+    private IRateFindRepo $rateFind;
 
     /**
-     * @param IRateFind $rateFind
+     * @param IRateFindRepo $rateFind
      */
-    public function __construct(IRateFind $rateFind)
+    public function __construct(IRateFindRepo $rateFind)
     {
         $this->rateFind = $rateFind;
     }

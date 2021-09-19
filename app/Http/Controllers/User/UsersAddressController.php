@@ -6,7 +6,7 @@ use App\Exceptions\UserAddress\UserAddressNotFoundException;
 use App\Helpers\ResponseDataBuilder;
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\UserAddress\IUserAddressDelete;
-use App\Http\Interfaces\UserAddress\IUserAddressFind;
+use App\Http\Interfaces\UserAddress\IUserAddressFindRepo;
 use App\Http\Interfaces\UserAddress\IUserAddressStore;
 use App\Http\Interfaces\UserAddress\IUserAddressUpdate;
 use App\Http\Requests\UserAdrress\StoreUserAdrresRequest;
@@ -17,18 +17,18 @@ use Illuminate\Http\JsonResponse;
 class UsersAddressController extends Controller
 {
 
-    private IUserAddressFind $userAddressFind;
+    private IUserAddressFindRepo $userAddressFind;
     private IUserAddressStore $userAddressStore;
     private IUserAddressUpdate $userAddressUpdate;
     private IUserAddressDelete $userAddressDelete;
 
     /**
-     * @param IUserAddressFind $userAddressFind
+     * @param IUserAddressFindRepo $userAddressFind
      * @param IUserAddressStore $userAddressStore
      * @param IUserAddressUpdate $userAddressUpdate
      * @param IUserAddressDelete $userAddressDelete
      */
-    public function __construct(IUserAddressFind $userAddressFind, IUserAddressStore $userAddressStore, IUserAddressUpdate $userAddressUpdate, IUserAddressDelete $userAddressDelete)
+    public function __construct(IUserAddressFindRepo $userAddressFind, IUserAddressStore $userAddressStore, IUserAddressUpdate $userAddressUpdate, IUserAddressDelete $userAddressDelete)
     {
         $this->userAddressFind = $userAddressFind;
         $this->userAddressStore = $userAddressStore;

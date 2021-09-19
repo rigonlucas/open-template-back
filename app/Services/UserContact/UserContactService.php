@@ -19,6 +19,7 @@ class UserContactService implements IUserContactStore, IUserContactDelete, IUser
     }
 
     /**
+     * Store new user contact
      * @param string $type
      * @param string $contact
      * @param string $description
@@ -41,6 +42,7 @@ class UserContactService implements IUserContactStore, IUserContactDelete, IUser
     }
 
     /**
+     * Update a specific user contact
      * @param string $type
      * @param string $contact
      * @param string $description
@@ -64,6 +66,7 @@ class UserContactService implements IUserContactStore, IUserContactDelete, IUser
     }
 
     /**
+     * Softdelets a specific user contact
      * @param string $hash
      * @return bool
      * @throws UserContactNotFoundException
@@ -79,6 +82,7 @@ class UserContactService implements IUserContactStore, IUserContactDelete, IUser
     }
 
     /**
+     * Restore a specific user contact
      * @param string $hash
      * @return bool
      * @throws UserContactNotFoundException
@@ -94,6 +98,7 @@ class UserContactService implements IUserContactStore, IUserContactDelete, IUser
     }
 
     /**
+     * Forcedelete a specific user contact
      * @param string $hash
      * @return bool
      * @throws UserContactNotFoundException

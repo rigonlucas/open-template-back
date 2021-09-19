@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Rate;
 
-use App\Http\Interfaces\Rate\IRateFind;
+use App\Http\Interfaces\Rate\IRateFindRepo;
 use App\Models\Rate;
 use Illuminate\Support\Collection;
 
-class RateFindRepo implements IRateFind
+class RateFindRepo implements IRateFindRepo
 {
 
     /**

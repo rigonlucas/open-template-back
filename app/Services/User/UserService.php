@@ -4,7 +4,7 @@ namespace App\Services\User;
 
 use App\Exceptions\Auth\CredendialsWrongException;
 use App\Exceptions\User\UserNotFoundException;
-use App\Http\Interfaces\User\IUserFind;
+use App\Http\Interfaces\User\IUserFindRepo;
 use App\Http\Interfaces\User\IUserRegister;
 use App\Http\Interfaces\User\IUserLogin;
 use App\Http\Interfaces\User\IUserLogout;
@@ -18,17 +18,18 @@ use Illuminate\Support\Facades\Hash;
 
 class UserService implements IUserRegister, IUserLogin, IUserLogout, IUserActive, IUserUpdate
 {
-    private IUserFind $userFind;
+    private IUserFindRepo $userFind;
 
     /**
-     * @param IUserFind $userFind
+     * @param IUserFindRepo $userFind
      */
-    public function __construct(IUserFind $userFind)
+    public function __construct(IUserFindRepo $userFind)
     {
         $this->userFind = $userFind;
     }
 
     /**
+     * Restore user archived
      * @param int $id
      * @return bool
      */
@@ -38,6 +39,7 @@ class UserService implements IUserRegister, IUserLogin, IUserLogout, IUserActive
     }
 
     /**
+     * Disable user with softdeletes
      * @param int $id
      * @return bool
      */
@@ -47,6 +49,7 @@ class UserService implements IUserRegister, IUserLogin, IUserLogout, IUserActive
     }
 
     /**
+     * Makes user login
      * @param string $email
      * @param string $password
      * @return array
@@ -64,6 +67,7 @@ class UserService implements IUserRegister, IUserLogin, IUserLogout, IUserActive
     }
 
     /**
+     * Logout user and remove only current token
      * @return bool
      */
     function singleLogout(): bool
@@ -72,6 +76,7 @@ class UserService implements IUserRegister, IUserLogin, IUserLogout, IUserActive
     }
 
     /**
+     * Register new user
      * @param string $name
      * @param string $email
      * @param string $password
@@ -92,6 +97,7 @@ class UserService implements IUserRegister, IUserLogin, IUserLogout, IUserActive
     }
 
     /**
+     * Update user data available only for account owner
      * @param int $id
      * @param string $name
      * @param string $email

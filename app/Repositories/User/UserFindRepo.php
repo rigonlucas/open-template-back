@@ -2,12 +2,12 @@
 
 namespace App\Repositories\User;
 
-use App\Http\Interfaces\User\IUserFind;
+use App\Http\Interfaces\User\IUserFindRepo;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class UserFindRepo implements IUserFind
+class UserFindRepo implements IUserFindRepo
 {
 
     /**

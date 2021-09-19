@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read user $user
  * class Rate
  * @package App\Rate
+ * @method static create(string[] $array)
+ * @method static update(string[] $array)
  */
 class Rate extends Model
 {

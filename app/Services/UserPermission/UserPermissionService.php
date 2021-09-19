@@ -10,6 +10,7 @@ class UserPermissionService implements IUserPermissionStore, IUserPermissionDele
 {
 
     /**
+     * Create new permissions for a specific user
      * @param int $user_id
      * @param string $permission
      * @return UserPermission|null
@@ -23,6 +24,7 @@ class UserPermissionService implements IUserPermissionStore, IUserPermissionDele
     }
 
     /**
+     * Delete a permission for a specific user
      * @param int $id
      * @param int $user_id
      * @return bool

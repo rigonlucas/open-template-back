@@ -4,7 +4,7 @@ namespace App\Http\Interfaces\UserAddress;
 use App\Models\UserAddress;
 use Illuminate\Database\Eloquent\Collection;
 
-interface IUserAddressFind
+interface IUserAddressFindRepo
 {
     function findUserAddress(int $user_id): Collection;
 

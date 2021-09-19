@@ -14,6 +14,7 @@ class UserAddressService implements IUserAddressStore,IUserAddressUpdate, IUserA
 {
 
     /**
+     * Store new user address
      * @param string $postal_code
      * @param string $address
      * @param int $number
@@ -35,6 +36,7 @@ class UserAddressService implements IUserAddressStore,IUserAddressUpdate, IUserA
     }
 
     /**
+     * Update user address by hash code
      * @param string $postal_code
      * @param string $address
      * @param int $number
@@ -42,7 +44,6 @@ class UserAddressService implements IUserAddressStore,IUserAddressUpdate, IUserA
      * @param string $reference
      * @param string $hash
      * @return int
-     * @throws AuthorizationException
      */
     function update(string $postal_code, string $address, int $number, string $complement, string $reference, string $hash): int
     {
@@ -59,6 +60,7 @@ class UserAddressService implements IUserAddressStore,IUserAddressUpdate, IUserA
     }
 
     /**
+     * Softdelete of an user address
      * @param string $hash
      * @return bool
      * @throws UserAddressNotFoundException
@@ -74,6 +76,7 @@ class UserAddressService implements IUserAddressStore,IUserAddressUpdate, IUserA
     }
 
     /**
+     * Restore Softdelete of an user address
      * @param string $hash
      * @return bool
      * @throws UserAddressNotFoundException
@@ -89,6 +92,7 @@ class UserAddressService implements IUserAddressStore,IUserAddressUpdate, IUserA
     }
 
     /**
+     * Force delete user address
      * @param string $hash
      * @return bool
      * @throws UserAddressNotFoundException

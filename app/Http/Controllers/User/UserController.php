@@ -6,7 +6,7 @@ use App\Exceptions\User\UserNotFoundException;
 use App\Helpers\ResponseDataBuilder;
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\User\IUserActive;
-use App\Http\Interfaces\User\IUserFind;
+use App\Http\Interfaces\User\IUserFindRepo;
 use App\Http\Interfaces\User\IUserUpdate;
 use App\Http\Requests\User\DisableUserRequest;
 use App\Http\Requests\User\EnableUserRequest;
@@ -16,16 +16,16 @@ use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
-    private IUserFind $userFind;
+    private IUserFindRepo $userFind;
     private IUserUpdate $userUpdate;
     private IUserActive $userActive;
 
     /**
-     * @param IUserFind $userFind
+     * @param IUserFindRepo $userFind
      * @param IUserUpdate $userUpdate
      * @param IUserActive $userActive
      */
-    public function __construct(IUserFind $userFind, IUserUpdate $userUpdate, IUserActive $userActive)
+    public function __construct(IUserFindRepo $userFind, IUserUpdate $userUpdate, IUserActive $userActive)
     {
         $this->userFind = $userFind;
         $this->userUpdate = $userUpdate;

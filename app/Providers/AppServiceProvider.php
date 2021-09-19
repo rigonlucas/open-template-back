@@ -3,20 +3,20 @@
 namespace App\Providers;
 
 use App\Http\Interfaces\Rate\IRateCheck;
-use App\Http\Interfaces\Rate\IRateFind;
+use App\Http\Interfaces\Rate\IRateFindRepo;
 use App\Http\Interfaces\Rate\IRateStore;
 use App\Http\Interfaces\User\IUserActive;
-use App\Http\Interfaces\User\IUserFind;
+use App\Http\Interfaces\User\IUserFindRepo;
 use App\Http\Interfaces\User\IUserLogin;
 use App\Http\Interfaces\User\IUserLogout;
 use App\Http\Interfaces\User\IUserRegister;
 use App\Http\Interfaces\User\IUserUpdate;
 use App\Http\Interfaces\UserAddress\IUserAddressDelete;
-use App\Http\Interfaces\UserAddress\IUserAddressFind;
+use App\Http\Interfaces\UserAddress\IUserAddressFindRepo;
 use App\Http\Interfaces\UserAddress\IUserAddressStore;
 use App\Http\Interfaces\UserAddress\IUserAddressUpdate;
 use App\Http\Interfaces\UserContact\IUserContactDelete;
-use App\Http\Interfaces\UserContact\IUserContactFind;
+use App\Http\Interfaces\UserContact\IUserContactFindRepo;
 use App\Http\Interfaces\UserContact\IUserContactStore;
 use App\Http\Interfaces\UserContact\IUserContactUpdate;
 use App\Http\Interfaces\UserPermission\IUserPermissionDelete;
@@ -60,14 +60,14 @@ class AppServiceProvider extends ServiceProvider
     }
 
     private function setUserContact(){
-        $this->app->bind(IUserContactFind::class, UserContactFind::class);
+        $this->app->bind(IUserContactFindRepo::class, UserContactFind::class);
         $this->app->bind(IUserContactStore::class, UserContactService::class);
         $this->app->bind(IUserContactUpdate::class, UserContactService::class);
         $this->app->bind(IUserContactDelete::class, UserContactService::class);
     }
 
     private function setUserAddress(){
-        $this->app->bind(IUserAddressFind::class, UserAddressFindRepo::class);
+        $this->app->bind(IUserAddressFindRepo::class, UserAddressFindRepo::class);
         $this->app->bind(IUserAddressStore::class, UserAddressService::class);
         $this->app->bind(IUserAddressUpdate::class, UserAddressService::class);
         $this->app->bind(IUserAddressDelete::class, UserAddressService::class);
@@ -78,7 +78,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IUserPermissionDelete::class, UserPermissionService::class);
     }
     private function setUser(){
-        $this->app->bind(IUserFind::class, UserFindRepo::class);
+        $this->app->bind(IUserFindRepo::class, UserFindRepo::class);
         $this->app->bind(IUserRegister::class, UserService::class);
         $this->app->bind(IUserLogin::class, UserService::class);
         $this->app->bind(IUserLogout::class, UserService::class);
@@ -87,7 +87,7 @@ class AppServiceProvider extends ServiceProvider
     }
 
     private function setRate(){
-        $this->app->bind(IRateFind::class, RateFindRepo::class);
+        $this->app->bind(IRateFindRepo::class, RateFindRepo::class);
         $this->app->bind(IRateStore::class, RateService::class);
         $this->app->bind(IRateCheck::class, RateService::class);
     }

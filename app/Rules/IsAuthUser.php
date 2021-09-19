@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Http\Interfaces\User\IUserFind;
+use App\Http\Interfaces\User\IUserFindRepo;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 

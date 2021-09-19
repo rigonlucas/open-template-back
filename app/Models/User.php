@@ -28,6 +28,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read UserPermission $permission
  * @property-read UserAddress $address
  * @package App\Models
+ * @method static create(string[] $array)
+ * @method static update(string[] $array)
  */
 class User extends Authenticatable
 {

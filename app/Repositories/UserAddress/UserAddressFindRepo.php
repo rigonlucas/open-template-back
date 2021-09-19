@@ -1,12 +1,12 @@
 <?php
 namespace App\Repositories\UserAddress;
 
-use App\Http\Interfaces\UserAddress\IUserAddressFind;
+use App\Http\Interfaces\UserAddress\IUserAddressFindRepo;
 use App\Models\UserAddress;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
-class UserAddressFindRepo implements IUserAddressFind
+class UserAddressFindRepo implements IUserAddressFindRepo
 {
 
     /**

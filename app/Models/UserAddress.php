@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * Class UserAddress
  * @package App\Models
+ * @method static create(string[] $array)
+ * @method static update(string[] $array)
  */
 class UserAddress extends Model
 {

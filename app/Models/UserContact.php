@@ -13,6 +13,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string contact
  * @property string description
  * @property string hash
+ *
+ * @method static create(string[] $array)
+ * @method static update(string[] $array)
  */
 class UserContact extends Model
 {

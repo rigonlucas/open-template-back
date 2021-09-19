@@ -14,8 +14,6 @@ use App\Http\Requests\UserContact\StoreUserContactRequest;
 use App\Http\Requests\UserContact\UpdateUserContactRequest;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class UserContactController extends Controller
 {

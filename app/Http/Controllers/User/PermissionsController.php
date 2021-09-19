@@ -4,13 +4,11 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\UserPermission\IUserPermissionDelete;
-use App\Http\Interfaces\UserPermission\IUserPermissionService;
 use App\Http\Interfaces\UserPermission\IUserPermissionStore;
 use App\Http\Requests\UserPermissions\DeletePermissionRequest;
 use App\Http\Requests\UserPermissions\StorePermissionRequest;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class PermissionsController extends Controller
 {

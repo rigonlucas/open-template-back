@@ -6,7 +6,6 @@ use App\Http\Interfaces\UserAddress\IUserAddressDelete;
 use App\Http\Interfaces\UserAddress\IUserAddressStore;
 use App\Http\Interfaces\UserAddress\IUserAddressUpdate;
 use App\Models\UserAddress;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 

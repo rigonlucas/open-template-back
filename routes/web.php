@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('root');
 
 Route::group(['middleware' => ['auth']], function (){
     Route::get('/home', function () {
@@ -30,5 +30,5 @@ Route::post('login', [AuthWebController::class, 'login'])->name('post.login');
 Route::get('register', [AuthWebController::class, 'createRegister'])->name('register');
 Route::post('register', [AuthWebController::class, 'register'])->name('post.register');
 
-//Route::post('logout', [AuthWebController::class, 'logout'])->name('logout')->middleware( 'auth:sanctum');
+Route::get('logout', [AuthWebController::class, 'logout'])->name('logout')->middleware( 'auth');
 

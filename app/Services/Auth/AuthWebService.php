@@ -31,9 +31,9 @@ class AuthWebService implements IUserWebRegister, IUserWebLogin, IUserWebLogout
         return $user;
     }
 
-    function singleLogout()
+    function logout()
     {
-        // TODO: Implement singleLogout() method.
+        Auth::logout();
     }
 
     function register(string $name, string $email, string $password): array

@@ -5,17 +5,21 @@ namespace App\Http\Controllers\Auth;
 use App\Exceptions\Auth\CredendialsWrongException;
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\User\IUserWebLogin;
+use App\Http\Interfaces\User\IUserWebLogout;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use Exception;
 
 class AuthWebController extends Controller
 {
 
     private IUserWebLogin $userWebLogin;
+    private IUserWebLogout $userWebLogout;
 
-    public function __construct(IUserWebLogin $userWebLogin)
+    public function __construct(IUserWebLogin $userWebLogin, IUserWebLogout $userWebLogout)
     {
         $this->userWebLogin = $userWebLogin;
+        $this->userWebLogout = $userWebLogout;
     }
 
     public function createLogin(){
@@ -36,7 +40,7 @@ class AuthWebController extends Controller
             return redirect()->route('login');
         } catch (CredendialsWrongException $cEx){
             dd($cEx);
-        } catch (\Exception $ex){
+        } catch (Exception $ex){
             dd($ex);
         }
     }
@@ -46,6 +50,11 @@ class AuthWebController extends Controller
     }
 
     public function logout(){
-
+        try {
+            $this->userWebLogout->logout();
+            return redirect()->route('root');
+        }catch (Exception $ex){
+            dd($ex);
+        }
     }
 }
